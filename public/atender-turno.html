@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atender Turno</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io(); // Crear el Socket
+        function atenderTurno(puesto){
+            socket.emit('AtenderTurno', puesto)
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Atender Turno</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a target="_blank"  href="turno-actual.html">Turno Actual</a></li>
+            <li><a target="_blank"  href="nuevo-turno.html">Nuevo Turno</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Indicar que se atiende el próximo turno</h2>
+        <button id="atender-turno" onclick="javascript:atenderTurno(1)">Atender Puesto 1</button>
+        <button id="atender-turno" onclick="javascript:atenderTurno(2)">Atender Puesto 2</button>
+        <button id="atender-turno" onclick="javascript:atenderTurno(3)">Atender Puesto 3</button>
+    </main>
+</body>
+</html>
