@@ -10,8 +10,20 @@
     <script>
         const socket = io(); // Crear el Socket
         function crearTurno(nombre){
-            if (nombre !='')
-                socket.emit('CrearTurno', nombre )
+            if (nombre !='') {
+                socket.emit('CrearTurno', nombre.value )
+                mostrarMensaje('Turno solicitado con éxito');
+                nombre.value = '';
+            } 
+        }
+
+        function mostrarMensaje(mensaje) {
+                const mensajeDiv = document.getElementById('mensaje');
+                mensajeDiv.textContent = mensaje;
+                mensajeDiv.style.display = 'block';
+                setTimeout(() => {
+                    mensajeDiv.style.display = 'none';
+                }, 3000);
         }
 
     </script>
@@ -29,11 +41,12 @@
     </nav>
     <main>
         <h2>Ingrese su Nombre</h2>
-        <form id="nuevo-turno-form">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-            <button onclick="crearTurno(document.getElementById('nombre').value)">Solicitar Turno</button>
-        </form>
+        
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <button onclick="crearTurno(document.getElementById('nombre'))">Solicitar Turno</button>
+        
     </main>
+    <div id="mensaje" style="display:none;"></div>
 </body>
 </html>
